@@ -1,5 +1,5 @@
 # Acamica Proyecto Giffos
 
 
-## React, UseState, UseContext, UseEffect
+## React, UseState, UseContext, UseEffect, Fetch
 
