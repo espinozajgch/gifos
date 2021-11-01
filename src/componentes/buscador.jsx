@@ -3,32 +3,45 @@ import {useFetch} from "../customHooks/useFetch"
 import { useContext, useState } from "react";
 import ImgBusqueda from "../img/logo.svg";
 
-function Buscador({isDark, searchText, setSearchText, setSearchTrigger, suggest, setSuggest, setAutocompletar}){
+function Buscador({isDark, searchText, setSearchText, setSearchTrigger, suggest, setSuggest, setAutocompletar, setSearchTextResults, setSearchResults}){
 
-    const {imagesGallery, setImagesGallery} = useContext(AppContextProvider);
-    //const [searchTextAnt, setSearchTextAnt] = useState("");
+    const {setImagesGallery} = useContext(AppContextProvider);
 
     const capturarBusqueda = (e) => {
 		setSearchText(e.target.value);
+        //setSearchTextResults(e.target.value);
         setSearchTrigger(false);
-        setAutocompletar(true);
+        setAutocompletar(true);    
 	}
 
     const searchTrigger = () => {
         if(searchText!==""){
-            console.log("buscar");
+            //console.log("buscar");
             setSearchTrigger(true);
+            setSuggest([]);
+            setImagesGallery([]);
         }
     }
 
     const manejarClick = (e) => {
-        console.log(e);
-        setAutocompletar(false);
-        setSearchText(e);
-        setSearchTrigger(true);
-        setSuggest([]);
-        setImagesGallery([]);
-      };
+        if(searchText!==""){
+            setAutocompletar(false);
+            setSearchText(e);
+            setSearchTextResults(e);
+            setSearchTrigger(true);
+            setSuggest([]);
+            setImagesGallery([]);
+            setSearchResults(-1);
+        }
+    };
+
+    function onKeyUp(e) {
+        var keycode = e.charCode;
+        //console.log(event.charCode)
+        if(keycode == '13'){
+            manejarClick(e.target.value);
+        }
+      }
 
     return(
         <div className="buscador">
@@ -43,6 +56,7 @@ function Buscador({isDark, searchText, setSearchText, setSearchTrigger, suggest,
                     autoComplete="off"
                     value={searchText}
                     onChange={capturarBusqueda}
+                    onKeyPress={onKeyUp}
                     placeholder="Busca gifs"
                     name="name"
                     type="text"
@@ -54,10 +68,10 @@ function Buscador({isDark, searchText, setSearchText, setSearchTrigger, suggest,
                 
             <div className="autocomplete">
                 
-                {suggest.map((nombre) => {
+                {suggest.map((sugerencia) => {
                     return (
-                    <p key={nombre.name} className="autocomplete-item" onClick={() => manejarClick(nombre.name)}>
-                        {" "}{nombre.name}{" "}
+                    <p key={sugerencia.name} className="autocomplete-item" onClick={() => manejarClick(sugerencia.name)}>
+                        {" "}{sugerencia.name}{" "}
                     </p>
                     );
                 })}
