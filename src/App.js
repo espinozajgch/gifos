@@ -44,7 +44,7 @@ function App() {
 	useEffect(() => {
 		if(searchTrigger){
 			setLoader(true);
-			fetch(`https://api.giphy.com/v1/gifs/search?api_key=jhC8BokZhB21P4LMtcfv4UZsaVwKuUBq&q=${searchText}&limit=20`)
+			fetch(`https://api.giphy.com/v1/gifs/search?api_key=jhC8BokZhB21P4LMtcfv4UZsaVwKuUBq&q=${searchText}&limit=15`)
 			.then((respuesta) => {
 				return respuesta.json();
 			})

@@ -22,9 +22,7 @@ function Resultados(props){
             ) :  <p><b> { props.searchResults === 0 ? <img src={notFound} alt="Not Found" /> :  props.searchTextResults==="" ? "! Ingrese el termino de busqueda ¡" : `Resultados de busqueda para: ${props.searchTextResults}` } </b></p> }
 
             
-            {/* { <p><b> { props.searchText===""? "! Ingrese el termino de busqueda ¡" : `Resultados de busqueda para: ${props.searchText}` }</b></p> } */}
             <div className={`resultados ${props.isDark && "dark"}`}>
-            
                 {   
                     imagesGallery.length > 0 && imagesGallery?.map((elemento, i) => {
                         return <GitCard key={i} image={elemento} />;
