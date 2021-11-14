@@ -1,6 +1,5 @@
 import {AppContextProvider} from "../context/fetchContext"
-import {useFetch} from "../customHooks/useFetch"
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import ImgBusqueda from "../img/logo.svg";
 
 function Buscador({isDark, searchText, setSearchText, setSearchTrigger, suggest, setSuggest, setAutocompletar, setSearchTextResults, setSearchResults}){
@@ -9,7 +8,6 @@ function Buscador({isDark, searchText, setSearchText, setSearchTrigger, suggest,
 
     const capturarBusqueda = (e) => {
 		setSearchText(e.target.value);
-        //setSearchTextResults(e.target.value);
         setSearchTrigger(false);
         setAutocompletar(true);    
 	}
@@ -37,8 +35,7 @@ function Buscador({isDark, searchText, setSearchText, setSearchTrigger, suggest,
 
     function onKeyUp(e) {
         var keycode = e.charCode;
-        //console.log(event.charCode)
-        if(keycode == '13'){
+        if(keycode === '13'){
             manejarClick(e.target.value);
         }
       }

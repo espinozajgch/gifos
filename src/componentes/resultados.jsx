@@ -6,8 +6,7 @@ import notFound from "../img/404.png";
 
 
 function Resultados(props){
-    //let data = Array.from(props.imagenes);
-    const {imagesGallery, setImagesGallery} = useContext(AppContextProvider);
+    const {imagesGallery} = useContext(AppContextProvider);
 
     return(
         <div className="resultados">
